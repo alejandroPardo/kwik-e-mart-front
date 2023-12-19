@@ -15,7 +15,7 @@ const Product = ({ product, onClick }) => {
       <Card.Header>{product.name}</Card.Header>
       <Card.Body>
         <Card.Text>{product.description}</Card.Text>
-        <Card.Text>{product.price}</Card.Text>
+        <Card.Text>€{product.price}</Card.Text>
       </Card.Body>
     </Card>
   );

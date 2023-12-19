@@ -3,15 +3,19 @@ import Table from "react-bootstrap/Table";
 import Button from "react-bootstrap/Button";
 
 
-const Promotions = ({ promotions, handleEdit }) => {
+const Promotions = ({ promotions, handleEdit, products }) => {
+
+  const productLabel = (productId) => {
+    const label = products.find(obj => obj.value === productId.toString())
+    return label ? label.label : ''
+  }
   return (
     <Table striped bordered hover responsive>
       <thead>
         <tr>
           <th>Name</th>
           <th>Description</th>
-          <th>Start Date</th>
-          <th>End Date</th>
+          <th>Product</th>
           <th>Discounts</th>
           <th>Conditions</th>
           <th>Actions</th>
@@ -22,8 +26,7 @@ const Promotions = ({ promotions, handleEdit }) => {
           <tr key={promotion.id}>
             <td>{promotion.name}</td>
             <td>{promotion.description}</td>
-            <td>{promotion.start_date}</td>
-            <td>{promotion.end_date}</td>
+            <td>{productLabel(promotion.product_id)}</td>
             <td>
               {promotion.discounts.map((discount, index) => (
                 <div key={index}>
@@ -39,7 +42,7 @@ const Promotions = ({ promotions, handleEdit }) => {
               ))}
             </td>
             <td>
-              <Button variant="primary" size="sm" onClick={handleEdit(promotion.id)}>
+              <Button variant="primary" size="sm" onClick={() => {handleEdit(promotion, true)}}>
                 Edit
               </Button>
             </td>

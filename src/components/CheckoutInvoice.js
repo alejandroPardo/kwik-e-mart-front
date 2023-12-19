@@ -1,8 +1,10 @@
 import React from 'react';
 import { Table, ListGroup, Card } from 'react-bootstrap';
 
-
 const CheckoutInvoice = ({ checkoutData }) => {
+  const hasDiscounts = checkoutData.products.some(product => 
+    Object.keys(product.total_discount).length > 0
+  );
   return (
     <Card>
       <Card.Header as="h2">Invoice</Card.Header>
@@ -29,20 +31,21 @@ const CheckoutInvoice = ({ checkoutData }) => {
           </tbody>
         </Table>
 
-        <h3>Discounts</h3>
-        <ListGroup>
-          {checkoutData.products.map((item, index) =>
-            Object.entries(item.total_discount).map(([discountName, discountValue]) => (
-              <ListGroup.Item key={`${index}-${discountName}`}>
-                {discountName}: -€{discountValue}
-              </ListGroup.Item>
-            ))
-          )}
-        </ListGroup>
-
+        { hasDiscounts && (
+          <ListGroup>
+            <h3>Discounts</h3>
+            {checkoutData.products.map((item, index) =>
+              Object.entries(item.total_discount).map(([discountName, discountValue]) => (
+                <ListGroup.Item key={`${index}-${discountName}`}>
+                  {discountName}: -€{discountValue}
+                </ListGroup.Item>
+              ))
+            )}
+          </ListGroup>
+        )}
         <div className="mt-3">
-          <p><strong>Total Price:</strong> €{checkoutData.price}</p>
-          <p><strong>Total Discounts:</strong> -€{checkoutData.discounts}</p>
+          { hasDiscounts && (<p><strong>Total Price:</strong> €{checkoutData.price}</p>)}
+          { hasDiscounts && (<p><strong>Total Discounts:</strong> -€{checkoutData.discounts}</p>)}
           <p><strong>Final Price:</strong> €{checkoutData.final_price}</p>
         </div>
       </Card.Body>

@@ -95,7 +95,7 @@ const CheckoutPage = () => {
         <Col sm={4} >
           <h2>Actions</h2>
           {basket.products.length > 0 && <Button variant="success" size="sm" onClick={handleSubmit}>
-            Submit
+            Checkout
           </Button>  } {" "}
           <Button variant="primary" size="sm" onClick={handleProducts}>
             Back

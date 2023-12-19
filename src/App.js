@@ -12,7 +12,6 @@ function App() {
         <Route exact path="/" element={<ProductsPage />} />
         <Route path="/settings" element={<SettingsPage />} />
         <Route path="/checkout" element={<CheckoutPage />} />
-        
       </Routes>
     </Router>
   );

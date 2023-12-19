@@ -98,11 +98,12 @@ const ProductsPage = () => {
   };
 
   return (
-    <Container>
+    <Container className="mt-4">
       <Row>
         <Col sm={8}>
           <Row>
             <h1>Products</h1>
+            <h5>Start adding products to the basket by clicking on them.</h5>
             {products.map((product) => (
               <Col sm={3} key={product.id}>
                 <Product
