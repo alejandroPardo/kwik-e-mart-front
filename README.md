@@ -1,4 +1,4 @@
-# Technical Interview: Cash Register Frontend
+# Cash Register Frontend
 
 ## Overview
 
